@@ -6,7 +6,7 @@ import { Todo } from '../models/Todo';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    "Content-Type": "application/json",
   })
 }
 
@@ -26,6 +26,10 @@ export class TodoService {
   deleteTodo(todo:Todo):Observable<Todo> {
     const url = `${this.todosUrl}/${todo.id}`;
     return this.http.delete<Todo>(url, httpOptions);
+  }
+  //Add Todo
+  addTodo(todo:Todo):Observable<Todo> {
+    return this.http.post<Todo>(this.todosUrl, todo, httpOptions);
   }
   //Toggle Completed
   toggleCompleted(todo:Todo):Observable<any>{
